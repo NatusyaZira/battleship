@@ -45,3 +45,15 @@ form input {
     border-color: rgb(83, 175, 19);
     font-size: 1em;
 }
+
+.hit {
+    background-image: url('images/ship.png');
+    background-repeat: no-repeat;
+
+}
+
+.miss {
+    background-image: url('images/miss.png');
+    background-repeat: no-repeat;
+    
+}
