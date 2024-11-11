@@ -3,9 +3,9 @@ let model = {
   numShipe: 3,
   shipLength: 3,
   shipSunk: 0,
-  ships: [{locations: ['06', '16', '26'], hits: ['', '', '']},
-           {locations: ['24', '34', '44'], hits: ['', '', '']},
-           {locations: ['10', '11', '12'], hits: ['', '', '']}],
+  ships: [{locations: [0, 0, 0], hits: ['', '', '']},
+           {locations: [0, 0, 0], hits: ['', '', '']},
+           {locations: [0, 0, 0], hits: ['', '', '']}],
   fire: function(guess){
     for(let i = 0; i < this.numShipe; i++){
       let ship = this.ships[i];
@@ -64,6 +64,18 @@ let model = {
       }
       return newShipLocations;
     }
+  },
+
+  collision: function(locations) {
+    for(let i = 0; i < this.numShips; i++) {
+      let ship = model.ships[i];
+      for (let j = 0; j < locations.length; j++) {
+        if(ship.locations.indexOf(locations[j]) >= 0) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 };
 
@@ -124,10 +136,12 @@ function handleFireButton(){
 }
 
 function init() {
-  let fireButton = docyment.getElementById('fireButton');
+  let fireButton = document.getElementById('fireButton');
   fireButton.onclick = handleFireButton;
   let guessInput = document.getElementById('guessInput');
   guessInput.onkeypress = handleKeyPress;
+
+  model.generateLocations();
 
 }
 
